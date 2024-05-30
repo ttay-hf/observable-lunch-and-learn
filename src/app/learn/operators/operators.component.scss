@@ -1,0 +1,32 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  margin-top: 0.5rem;
+
+  .list-row {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+
+    div {
+      margin-bottom: 0;
+      padding: 0.5rem;
+    }
+
+    .operator {
+      flex: 1;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-weight: bold;
+      border-right: #ddd solid 2px;
+    }
+
+    .description {
+      flex: 6;
+      margin-left: 0.5rem;
+    }
+  }
+}

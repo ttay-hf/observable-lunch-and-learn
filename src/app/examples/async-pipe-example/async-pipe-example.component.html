@@ -1,0 +1,31 @@
+<h2>Async Pipe Example</h2>
+<div>
+  This example shows an example of how we can utilize the async pipe to subscribe to observables directly in a template.
+  The biggest benefit is that we don't have to maintain these subscriptions as the async pipe will unsubscribe when
+  the element that it is used within is no longer rendered. You can see this in the example below with the nested
+  "feature flag".
+</div>
+<div class="top-bar">
+  <div>
+    <!-- Note: only using the subject directly here so that the console logs are easily readable with less subscriptions -->
+    Main Feature Flag: {{mainFeatureFlag.value}}<br/>
+    <button (click)="toggleMainFlag()">Toggle Main Flag</button>
+  </div>
+  <div>
+    <!-- Note: only using the subject directly here so that the console logs are easily readable with less subscriptions -->
+    Nested Feature Flag: {{nestedFeatureFlag.value}}<br/>
+    <button (click)="toggleNestedFlag()">Toggle Nested Flag</button>
+  </div>
+</div>
+<div *ngIf="mainFeatureFlag$ | async" class="component-container">
+  This is a component!
+
+  <div *ngIf="nestedFeatureFlag$ | async" class="nested-component-container">
+    inner test component
+  </div>
+</div>
+
+<div>
+  <h3>Code</h3>
+  <pre>{{ codeExample }}</pre>
+</div>

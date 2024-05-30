@@ -1,0 +1,58 @@
+<h2>SwitchMap and Debounce Example</h2>
+
+<div>
+  Below are some examples of a search input text field that makes api calls as you type. There is a bad, good, and
+  better example. The idea is that we can utilize certain operators to make the user interface more performant, less
+  prone to race condition bugs, and overall nicer to the backend :)
+</div>
+<hr/>
+
+<!-- search with nested subscribe -- bad example -->
+<div class="search-container">
+  <span><b>Search (nested subscription)</b></span><br/>
+  <span>
+    This search field fires off an api call every time the form is changed. We could potentially be firing off many api
+    requests at once, could have api responses come back in different orders, etc. In this case, we aren't canceling
+    any previous requests prior to making another request, and we aren't accounting for fast typing from a user.
+  </span><br/><br/>
+
+  <label>Search field</label>
+  <input type="text" [formControl]="nestedEx.form.controls.search" />
+  <div>Outstanding Calls: {{nestedEx.outstandingCalls}}</div>
+</div>
+<hr/>
+
+<!-- search with nested subscribe -- good example -->
+<div class="search-container">
+  <span><b>Search (switchMap)</b></span><br/>
+  <span>
+    This search field fires off an api call every time the form is changed. However, under the hood, it uses the switchMap
+    pipe operator, so that before it makes another request, it unsubscribes from the previous observable (which means for
+    an http call that it will cancel that call).
+  </span><br/><br/>
+
+  <label>Search field</label>
+  <input type="text" [formControl]="switchMapEx.form.controls.search" />
+  <div>
+    <span>Outstanding Calls: {{switchMapEx.outstandingCalls}}</span><br/>
+    <span>Cancelled Calls: {{switchMapEx.canceledCalls}}</span>
+  </div>
+</div>
+<hr/>
+
+<!-- search with nested subscribe -- better example -->
+<div class="search-container">
+  <span><b>Search (switchMap + debounce)</b></span><br/>
+  <span>
+    This search field fires off an api call after the field has been changed without any other changes for 300 milliseconds.
+    If a change is made after 300 milliseconds, but before the fake api responds (2 seconds), then it will cancel the
+    previous request and make a new request.
+  </span><br/><br/>
+
+  <label>Search field</label>
+  <input type="text" [formControl]="switchAndDebounceEx.form.controls.search" />
+  <div>
+    <span>Outstanding Calls: {{switchAndDebounceEx.outstandingCalls}}</span><br/>
+    <span>Cancelled Calls: {{switchAndDebounceEx.canceledCalls}}</span>
+  </div>
+</div>

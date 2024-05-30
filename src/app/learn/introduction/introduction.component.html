@@ -1,0 +1,37 @@
+<h2>What is rxjs?</h2>
+<div>
+  <div>According to rxjs, it is:</div>
+  <div class="quote">
+    RxJS is a library for composing asynchronous and event-based programs by using observable sequences
+  </div>
+  <div>
+    Rxjs is based around these "observable" streams that we can subscribe to. We are able to
+    use operators on these streams and receive updates asynchronously as they are pushed
+    to the observable stream.
+  </div>
+  <div>
+    According to rxjs, the essential concepts are:
+  </div>
+  <div class="quote">
+    <ul>
+      <li>
+        <span class="bold">Observable</span>: represents the idea of an invokable collection of future values or events.
+      </li>
+      <li>
+        <span class="bold">Observer</span>: is a collection of callbacks that knows how to listen to values delivered by the Observable.
+      </li>
+      <li>
+        <span class="bold">Subscription</span>: represents the execution of an Observable, is primarily useful for cancelling the execution.
+      </li>
+      <li>
+        <span class="bold">Operators</span>: are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
+      </li>
+      <li>
+        <span class="bold">Subject</span>: is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers.
+      </li>
+      <li>
+        <span class="bold">Schedulers</span>: are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
+      </li>
+    </ul>
+  </div>
+</div>

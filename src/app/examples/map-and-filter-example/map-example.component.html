@@ -1,0 +1,20 @@
+<h2>Map Example</h2>
+<div>
+  This is a pretty simple example. When we click the button below, it will return back a response from our fake api within
+  a second. If we take a look at the code, we are mapping from an api response DTO (an interface that matches the response
+  from the api exactly) to the model that is used by our UI. If the api changes its payload, then the mapping function
+  would need to be updated, but our user interface would not need any changes.
+</div>
+
+<div>
+  <button (click)="callApi()">Call Fake Api</button>
+</div>
+
+<div>
+  @for (data of mappedData; track data) {
+    <div class="row">
+      <div>{{data.id}}</div>
+      <div>{{data.name}}</div>
+    </div>
+  }
+</div>

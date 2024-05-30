@@ -1,0 +1,48 @@
+<h2>Subscriptions</h2>
+<div>
+  When we talk about subscriptions, we are talking about a subscription to an observable stream. This means
+  that we want updates to any new events/items that come through a stream. There are a few different ways that we
+  can subscribe to subscriptions
+</div>
+<div>
+  <h3>Ways to subscribe</h3>
+  <ul>
+    <li>Subscribe method</li>
+    <ul>
+      <li>Subscribe with .subscribe()</li>
+      <li>Returns back a subscription that must be unsubscribed from with .unsubscribe()</li>
+    </ul>
+    <li>Async pipe</li>
+    <ul>
+      <li>Subscribe in the html template: <span class="small-quote">{{example}}</span></li>
+      <li>Observable is automatically unsubscribed from when the code block is no longer rendered</li>
+    </ul>
+  </ul>
+</div>
+
+<div>
+  <h3>Avoid Nested Subscriptions</h3>
+  We never want to subscribe to an observable within another subscribe or operator. Example:
+  <pre class="quote">{{badNestedExample}}</pre>
+
+  <div>
+    We can accomplish similar functionality by utilizing various pipe operators such as switchMap, mergeMap, etc.
+  </div>
+</div>
+
+<!--<span>value = {{test$ | async}}</span>-->
+
+<!--<div>-->
+<!--  <h3>Examples</h3>-->
+<!--  <div>-->
+<!--    <button>Next Change</button>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <span><b>.Subscribe()</b></span><br/>-->
+<!--    <span>value = {{test}}</span>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <span><b>Async Pipe</b></span><br/>-->
+<!--    <span>value = {{test$ | async}}</span>-->
+<!--  </div>-->
+<!--</div>-->

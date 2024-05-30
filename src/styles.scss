@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  justify-content: space-around;
+  flex: 1;
+  margin: 0 3rem 3rem;
+
+  font-size: 1.1rem;
+
+  h2 {
+    border-bottom: 0.2rem solid #777;
+    padding-bottom: 0.5rem;
+  }
+
+  h3, h4 {
+    margin-block-end: 0.4rem;
+  }
+
+  div {
+    margin-bottom: 1rem;
+    line-height: 1.6rem;
+  }
+
+  .quote, .small-quote {
+    font-family: monospace;
+    background-color: #f0f0f0;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .quote {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .small-quote {
+    padding: 0.5rem;
+    margin: 0.25rem;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}

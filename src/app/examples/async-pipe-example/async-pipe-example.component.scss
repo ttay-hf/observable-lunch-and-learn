@@ -1,0 +1,18 @@
+.top-bar {
+  display: flex;
+
+  div {
+    margin-right: 1.5rem;
+  }
+}
+
+.component-container {
+  background-color: #f0f0f0;
+  padding: 1rem;
+}
+
+.nested-component-container {
+  margin-top: 1rem;
+  background-color: #ccc;
+  padding: 1rem;
+}

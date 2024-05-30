@@ -1,0 +1,17 @@
+<h2>Input Handling</h2>
+<div>
+  Create an observable that listens to the form input and displays the output below. The input field should:
+  <ul>
+    <li>Debounce the stream by 300 milliseconds</li>
+    <li>Uppercase the entire string</li>
+  </ul>
+</div>
+
+
+<div>
+  <input type="text" [formControl]="form.controls.text" />
+</div>
+
+<div class="quote">
+  {{output$ | async}}
+</div>

@@ -1,0 +1,59 @@
+<h2>Subjects</h2>
+<div>
+  According to rxjs, subjects are:
+  <div class="quote">
+    A Subject is like an Observable, but can multicast to many Observers. Subjects are like EventEmitters;
+    they maintain a registry of many listeners.
+  </div>
+</div>
+
+<div>
+  Here's the basic usage of a subject
+  <div class="quote">
+    {{'const subject = new Subject&lt;number&gt;();'}}<br/><br/>
+    {{'subject.asObservable().subscribe(val => console.log(val));'}}<br/><br/>
+    {{'subject.next(1);'}}<br/>
+    {{'subject.next(2);'}}<br/><br/>
+    {{'// this will log:'}}<br/>
+    {{'// 1'}}<br/>
+    {{'// 2'}}
+  </div>
+</div>
+
+<div>
+  <b>Void Subjects</b><br/>
+  Note that subjects do not have to contain a value. You can use <span class="small-quote">Subject&lt;void&gt;</span>
+  to be able to emit events without emitting an actual value. This is how our
+  <span class="small-quote">DestroyableComponent</span> works.
+</div>
+
+<h3>Subject</h3>
+<div>
+  Any subscriber will receive any values that are emitted after the subscription has been setup. If
+  <span class="small-quote">next()</span> is called before the subscription, the subscriber will NOT receive that event
+</div>
+
+<h3>BehaviorSubject</h3>
+<div>
+  Similar to subjects, but behavior subjects will emit its current value to a subscribe when the subscription is created.
+  Since it will always emit a value, behavior subjects are instantiated with its starting value.
+  <div class="quote">
+    const behaviorSubject = new BehaviorSubject&lt;number&gt;(1);
+  </div>
+</div>
+
+<h3>ReplaySubject</h3>
+<div>
+  Replay subjects are similar to behavior subjects, but they buffer X number of events and will replay the events in
+  its buffer to a new subscriber.
+</div>
+
+<h3>AsyncSubject</h3>
+<div>
+  Async subjects are a variant where the subscribers are sent the last value only after the subject is completed. Any
+  events that are emitted before the last one are not sent to the subscribers.
+</div>
+<div>
+  This is similar to the <span class="small-quote">last()</span> operator.
+</div>
+

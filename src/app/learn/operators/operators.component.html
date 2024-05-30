@@ -1,0 +1,139 @@
+<h2>Operators</h2>
+<div>
+  According to rxjs, RxJS itself is mostly useful due to its operators, despite Observables being the foundation of
+  the library. Operators are:
+  <div class="quote">
+    the essential pieces that allow complex asynchronous code to be easily composed in a declarative manner.
+  </div>
+</div>
+
+<div>
+  There are two types of operators: Pipeable Operators and Creation Operators.
+  <h4>Pipeable Operators</h4>
+  <div>
+    These are the type of operators that can be piped to an observable using <span class="small-quote">.pipe()</span>.
+    When these operators are called, they do not change the existing observable instance, but rather return a new
+    observable whose subscription logic is based on the first observable.
+  </div>
+
+  <h4>Creation Operators</h4>
+  <div>
+    These are operators that are used to create observables. Think <span class="small-quote">of</span>,
+    <span class="small-quote">forkJoin</span>, <span class="small-quote">from</span>,
+    <span class="small-quote">combineLatest</span>, etc.
+  </div>
+</div>
+
+<div>
+  <h3>Common Operators</h3>
+  <a href="https://rxjs.dev/guide/operators#categories-of-operators">RxJS Operators Documentation</a>
+  <div class="list-container">
+    <div class="list-row">
+      <div class="operator"><span>map</span></div>
+      <div class="description">
+        Transforms each emitted item using a given function.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>filter</span></div>
+      <div class="description">
+        Filters items emitted by the source Observable by only emitting those that satisfy a specified predicate.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>tap</span></div>
+      <div class="description">
+        Invokes a function for each item emitted by the source Observable, and then passes the item along unchanged.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>mergeMap (flatMap)</span></div>
+      <div class="description">
+        Projects each source value to an Observable which is merged in the output Observable.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>switchMap</span></div>
+      <div class="description">
+        Projects each source value to an Observable which is merged in the output Observable, but whenever a new source Observable emits, it unsubscribes from the previous one.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>concatMap</span></div>
+      <div class="description">
+        Projects each source value to an Observable which is merged in the output Observable, emitting values in order but waiting for each inner Observable to complete before moving to the next.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>debounceTime</span></div>
+      <div class="description">
+        Emits a value from the source Observable only after a specified amount of time has passed without another source emission.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>distinctUntilChanged</span></div>
+      <div class="description">
+        Only emits when the current value is different from the last emitted value.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>takeUntil</span></div>
+      <div class="description">
+        Emits the values emitted by the source Observable until a notifier Observable emits a value.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>retry</span></div>
+      <div class="description">
+        If the source Observable emits an error, resubscribes to it in the hopes that it will complete without error.
+      </div>
+    </div>
+
+    <div class="list-row">
+      <div class="operator"><span>catchError (formerly known as `catch`)</span></div>
+      <div class="description">
+        Catches errors on the Observable to be handled by returning a new Observable or throwing an error.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h3>Observable Flow</h3>
+  With pipe operators, values will stream from one operator to the next. For example, if you had a map, a switchMap, and
+  then a tap
+  <pre class="quote">
+    <code>
+      someObservable$.pipe(
+        map((data) => (&#123;
+          idOne: data[0],
+          idTwo: data[1],
+        &#125;)),
+        switchMap((data) => this.someService.callAnApi(data.idOne)),
+        tap((val) => console.log(val)),
+      ).subscribe();
+    </code>
+  </pre>
+  <ol>
+    <li>
+      The map would run. Whatever gets returned from this function will be the parameter for the next operator (switchMap).
+      In this case, it's an object with idOne and idTwo
+    </li>
+    <li>
+      The switchMap will run and the data will be what was returned from the map. This will return an observable, which will
+      be called, and then continue to the next operator when it's complete.
+    </li>
+    <li>
+      Tap will run where "val" is the response from our api call
+    </li>
+  </ol>
+</div>

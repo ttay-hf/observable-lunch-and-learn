@@ -1,0 +1,31 @@
+<h2>CombineLatest Example</h2>
+<div>
+    This example shows off a few things:
+    <ul>
+      <li>How to use the combineLatest operator</li>
+      <li>Using "defer" with valueChanges so that the observable automatically emits when it's subscribed to</li>
+      <ul>
+        <li>
+          A form's valueChanges observable fires after its value has changed, but you can use concat/defer operators
+          to emit a value immediately when the valueChanges observable is subscribed to
+        </li>
+      </ul>
+    </ul>
+  <p>
+    With combineLatest, the observable only fires the event after all of its combined observables have emitted at least once.
+    You will notice with the default demo, the Combined Forms section only begins being updated after both fields have been modified.
+    You can use the toggle button below the forms to setup the "Right field" to use concat/defer on that observable. When
+    it is set to concat/defer, then the combined observable will start displaying as soon as the left field form is typed into.
+  </p>
+</div>
+
+<div>
+  <p><b>Example</b></p>
+  <label>Left field</label>
+  <input type="text" [formControl]="form.controls.leftText" />
+  <label>Right field</label>
+  <input type="text" [formControl]="form.controls.rightText" />
+  <div><button (click)="toggleCombinedObservable()">Toggle</button>({{defer ? 'Concat/Defer Right Field' : 'Do not defer'}})</div>
+
+  <div class="quote">Combined Forms: {{combined$ | async}}</div>
+</div>
